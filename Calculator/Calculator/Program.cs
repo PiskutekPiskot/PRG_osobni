@@ -36,10 +36,48 @@ namespace Calculator
              *       - https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/iteration-statements#the-while-statement
              * 3) Umozni uzivateli zadavat i desetinna cisla, tedy prekopej kalkulacku tak, aby umela pracovat s floaty
              */
+           
 
-            //Tento komentar smaz a misto nej zacni psat svuj prdacky kod.
+            while (true)
+            {
+                Console.WriteLine("napiš první číslo");
+                double a = Convert.ToDouble(Console.ReadLine());
+                Console.WriteLine("napiš číselnou operaci (+,-,*,/)");
+                string operace = Console.ReadLine();
+                Console.WriteLine("napiš druhé číslo");
+                double b = Convert.ToDouble(Console.ReadLine());
+                double vysledek = 0;
+                switch (operace)
+                {
+                    case "+":
+                        vysledek = a + b;
+                        break;
+                    case "-":
+                        vysledek = a - b;
+                        break;
+                    case "*":
+                        vysledek = a * b;
+                        break;
+                    case "/":
+                        vysledek = a / b;
+                        break;
+                    case "^":
+                        vysledek = Math.Pow(a,b);
+                        break;
 
-            Console.ReadKey(); //Toto nech jako posledni radek, aby se program neukoncil ihned, ale cekal na stisk klavesy od uzivatele.
+
+
+
+                }
+                Console.WriteLine("výsledek je " + vysledek +'\n');
+            }
+           
+
+
+
+
+
         }
     }
 }
+    
