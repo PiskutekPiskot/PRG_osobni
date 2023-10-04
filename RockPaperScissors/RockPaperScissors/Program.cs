@@ -78,7 +78,7 @@ namespace RockPaperScissors
                 }    
                else
                 {
-                    if (computerTurn=="rock" && input=="paper" || computerTurn == "paper" && input == "scissors" || computerTurn == "scissors" && input == "rock")
+                    if ((computerTurn=="rock" && input=="paper") || (computerTurn == "paper" && input == "scissors") || (computerTurn == "scissors" && input == "rock"))
                     {
                         Console.WriteLine("Computer chose "+computerTurn+" You WON!");
                         playerPoints++;
