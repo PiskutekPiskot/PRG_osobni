@@ -36,103 +36,112 @@ namespace Calculator
              *       - https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/iteration-statements#the-while-statement
              * 3) Umozni uzivateli zadavat i desetinna cisla, tedy prekopej kalkulacku tak, aby umela pracovat s floaty
              */
-
-
-            /* while (true)
-             {
-                 Console.WriteLine("napiš první číslo");
-                 double a = Convert.ToDouble(Console.ReadLine());
-                 Console.WriteLine("napiš číselnou operaci (+,-,*,/)");
-                 string operace = Console.ReadLine();
-                 Console.WriteLine("napiš druhé číslo");
-                 double b = Convert.ToDouble(Console.ReadLine());
-                 double vysledek = 0;
-                 switch (operace)
-                 {
-                     case "+":
-                         vysledek = a + b;
-                         break;
-                     case "-":
-                         vysledek = a - b;
-                         break;
-                     case "*":
-                         vysledek = a * b;
-                         break;
-                     case "/":
-                         vysledek = a / b;
-                         break;
-                     case "^":
-                         vysledek = Math.Pow(a,b);
-                         break;
-                 }
-                 Console.WriteLine("výsledek je " + vysledek +'\n');
-             }*/
-            Console.WriteLine("write an equation (only with one operator)");
-            string input = Console.ReadLine();
-            string number = "";
-            string Operator = "";
+            Console.WriteLine("this calculator can use +,-,*,/,^" + '\n' + "you can also use the variable x or ans" + '\n');
             double output = 0;
-            List<string> operators = new List<string>();
-            List<string> viableOperators = new List<string> { "+", "-", "*", "/", "^", };
-            List<double> numbers = new List<double>();
-            for (int i = 0; i < input.Length; i++)//Rozdělí vztup na operatory a čísla.
+            int numberOfRepetitions = 0;
+            while (true)
             {
-                if (char.IsDigit(input[i]))
+                Console.WriteLine("write an equation (No Brackets)");
+                string input = Console.ReadLine().Replace(".", ",").ToLower();//Zmeni tecky na carky v pripade, ze uzivatel zada desetinne misto za teckou.
+                string number = "";
+                string Operator = "";
+                int duplicateOps = 0;
+                List<string> operators = new List<string>();
+                List<string> viableOperators = new List<string> { "^", "/", "*", "-", "+" };//Seznam moznych operaci v poradi ciselnych operaci.
+                List<double> numbers = new List<double>();
+                if (input.Contains("x"))//Zjisti jestli priklad obsahuje neznamou x.
                 {
-                    number = number + input[i];
-                    if (viableOperators.Contains(Operator))
+                    Console.WriteLine("input value of x");
+                    if (double.TryParse(Console.ReadLine(), out double x))//zkontroluje zda je zadana hodnota double.
                     {
-                        operators.Add(Operator);
-                        Operator = "";
+                        input = input.Replace("x", x.ToString());//Vymeni "x" v priklade za zadanou hodnotu x.
                     }
+                }
+                if (input.Contains("ans"))
+                {
+                    if (numberOfRepetitions > 0)
+                    {
+                        input = input.Replace("ans", output.ToString());
+                    }
+                    else
+                    {
+                        Console.WriteLine("ans is not defined");
+                    }
+                }
+                if (double.TryParse(input, out double result))//Pokud uzivatel zada pouze cislo bez zadneho operatora, tak je zadane cislo vysledek.
+                {
+                    output = result;
+                }
 
-
+                for (int i = 0; i < input.Length; i++)//Cyklus rozdeli priklad na cisla a na operace.
+                {
+                    if (char.IsDigit(input[i]) || input[i] == ',' || input[i] == '.')
+                    {
+                        number = number + input[i];
+                        if (viableOperators.Contains(Operator))
+                        {
+                            operators.Add(Operator);
+                            Operator = "";
+                        }
+                    }
+                    else
+                    {
+                        Operator = Operator + input[i];
+                        if (Double.TryParse(number, out double res))
+                        {
+                            numbers.Add(Convert.ToDouble(number));
+                        }
+                        else { break; }
+                        number = "";
+                    }
+                }
+                if (number != "")//zjisti jestli zadany priklad dava smysl.
+                {
+                    numbers.Add(Convert.ToDouble(number));
+                    operators.Add(Operator);
+                    foreach (string OperatorOrder in viableOperators)//Cyklus probehne pro kazdou operaci v seznamu operaci, ale pokazdy se zmeni OperatorOrder na dalsi operaci. 
+                    {
+                        foreach (string dupe in operators)
+                        {
+                            if (dupe == OperatorOrder)
+                            {
+                                duplicateOps++;
+                            }
+                        }
+                        for (int i = 0; i < duplicateOps; i++)//opakuje vypocet pro operatora vic krat pro pripad ze ho priklad obsahuje vic krat
+                        {
+                            int y = operators.IndexOf(OperatorOrder);//Zjisti na jakem miste se v seznamu operatoru nachazi OperatorOrder
+                            if (y != -1)
+                            {
+                                switch (OperatorOrder)
+                                {
+                                    case "*":
+                                        output = numbers[y] * numbers[y + 1]; break;
+                                    case "/":
+                                        output = numbers[y] / numbers[y + 1]; break;
+                                    case "+":
+                                        output = numbers[y] + numbers[y + 1]; break;
+                                    case "-":
+                                        output = numbers[y] - numbers[y + 1]; break;
+                                    case "^":
+                                        output = Math.Pow(numbers[y], numbers[y + 1]); break;
+                                }
+                                numbers[y + 1] = output; //Po spocteni casti rovnice vymeni spoctenou cast za vysledek
+                                numbers.RemoveAt(y);
+                                operators.RemoveAt(y);
+                            }
+                        }
+                    }
+                    Console.WriteLine("the answer is: " + output);
                 }
                 else
                 {
-                    Operator = Operator + input[i];
-                    if (Double.TryParse(number, out double res)) { numbers.Add(Convert.ToDouble(number)); }
-                    else { break; }
-                    number = "";
+                    Console.WriteLine("Error");
                 }
-
+                numberOfRepetitions++;
             }
-            operators.IndexOf("*");
-            numbers.Add(Convert.ToDouble(number));
-            operators.Add(Operator);
-            for (int i = 0; i < operators.Count; i++)
-            {
-                switch (operators[i])
-                {
-                    case "*":
-                        output = numbers[0] * numbers[i + 1];
-                        numbers[0] = output;
-                        break;
-                    case "/":
-                        output = numbers[0] / numbers[i + 1];
-                        numbers[0] = output;
-                        break;
-                    case "-":
-                        output = numbers[0] - numbers[i + 1];
-                        numbers[0] = output;
-                        break;
-                    case "+":
-                        output = numbers[0] + numbers[i + 1];
-                        numbers[0] = output;
-                        break;
-                    case "^":
-                        output = Math.Pow(numbers[0], numbers[i + 1]);
-                        numbers[0] = output;
-                        break;
-                }
-            }
-
-
-            operators.ForEach(Console.WriteLine);
-            numbers.ForEach(Console.WriteLine);
-            Console.WriteLine(output);
             Console.ReadKey();
-        }//push test
+        }
     }
 }
     
