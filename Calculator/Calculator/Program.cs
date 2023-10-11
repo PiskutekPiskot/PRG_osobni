@@ -90,9 +90,7 @@ namespace Calculator
                 }
                 else
                 {
-
                     Operator = Operator + input[i];
-
                     if (Double.TryParse(number, out double res)) { numbers.Add(Convert.ToDouble(number)); }
                     else { break; }
                     number = "";
@@ -134,7 +132,7 @@ namespace Calculator
             numbers.ForEach(Console.WriteLine);
             Console.WriteLine(output);
             Console.ReadKey();
-        }
+        }//push test
     }
 }
     
