@@ -67,19 +67,73 @@ namespace Calculator
                  }
                  Console.WriteLine("výsledek je " + vysledek +'\n');
              }*/
-            Console.WriteLine("write an equation");
-            string input=Console.ReadLine();
-            List<char>operators = new List<char>();
-            for(int i = 0; i < input.Length; i++)
+            Console.WriteLine("write an equation (only with one operator)");
+            string input = Console.ReadLine();
+            string number = "";
+            string Operator = "";
+            double output = 0;
+            List<string> operators = new List<string>();
+            List<string> viableOperators = new List<string> { "+", "-", "*", "/", "^", };
+            List<double> numbers = new List<double>();
+            for (int i = 0; i < input.Length; i++)//Rozdělí vztup na operatory a čísla.
             {
-                if (input[i]=='+'|| input[i] == '-' || input[i] == '*' || input[i] == '/' )
+                if (char.IsDigit(input[i]))
                 {
-                    operators.Add(input[i]);
+                    number = number + input[i];
+                    if (viableOperators.Contains(Operator))
+                    {
+                        operators.Add(Operator);
+                        Operator = "";
+                    }
+
+
+                }
+                else
+                {
+
+                    Operator = Operator + input[i];
+
+                    if (Double.TryParse(number, out double res)) { numbers.Add(Convert.ToDouble(number)); }
+                    else { break; }
+                    number = "";
+                }
+
+            }
+            operators.IndexOf("*");
+            numbers.Add(Convert.ToDouble(number));
+            operators.Add(Operator);
+            for (int i = 0; i < operators.Count; i++)
+            {
+                switch (operators[i])
+                {
+                    case "*":
+                        output = numbers[0] * numbers[i + 1];
+                        numbers[0] = output;
+                        break;
+                    case "/":
+                        output = numbers[0] / numbers[i + 1];
+                        numbers[0] = output;
+                        break;
+                    case "-":
+                        output = numbers[0] - numbers[i + 1];
+                        numbers[0] = output;
+                        break;
+                    case "+":
+                        output = numbers[0] + numbers[i + 1];
+                        numbers[0] = output;
+                        break;
+                    case "^":
+                        output = Math.Pow(numbers[0], numbers[i + 1]);
+                        numbers[0] = output;
+                        break;
                 }
             }
 
+
             operators.ForEach(Console.WriteLine);
-            Console.ReadKey();  
+            numbers.ForEach(Console.WriteLine);
+            Console.WriteLine(output);
+            Console.ReadKey();
         }
     }
 }
