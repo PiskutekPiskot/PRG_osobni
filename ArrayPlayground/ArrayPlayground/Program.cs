@@ -52,16 +52,16 @@ namespace ArrayPlayground
             }
             //TODO 8: Změň tvorbu integerového pole tak, že bude obsahovat 100 náhodně vygenerovaných čísel od 0 do 9. Vytvoř si na to proměnnou typu Random.
             Random rnd =new Random();
-            int[] numsRandomArray = new int[100];
+           numsArray = new double[100];
             for (int i = 0; i < 100; i++)
             {
-                numsRandomArray[i] = rnd.Next(10);
+                numsArray[i] = rnd.Next(10);
             }
             //TODO 9: Spočítej kolikrát se každé číslo v poli vyskytuje a spočítané četnosti vypiš do konzole.
             int[] counts = new int[10];
             for (int i = 0; i < 10; i++)
             {
-                foreach (int count in numsRandomArray) if (count==i)
+                foreach (int count in numsArray) if (count==i)
                     {
                         counts[i]++;
                     }          
