@@ -17,25 +17,25 @@ namespace _2D_Array_Playground
         {
             //TODO 1: Vytvoř integerové 2D pole velikosti 5 x 5, naplň ho čísly od 1 do 25 a vypiš ho do konzole (5 řádků po 5 číslech).
             int[,] array2D = new int[5, 5];
-            int numberToAdd=1;
+            int numberToAdd = 1;
             for (int i = 0; i < array2D.GetLength(0); i++)
             {
                 for (int j = 0; j < array2D.GetLength(1); j++)
                 {
-                    array2D[i, j] =numberToAdd;
+                    array2D[i, j] = numberToAdd;
                     numberToAdd++;
                     Console.Write(array2D[i, j] + " ");
                 }
-                Console.WriteLine("\n");    
+                Console.WriteLine("\n");
             }
             Console.WriteLine("\n");
 
 
             //TODO 2: Vypiš do konzole n-tý řádek pole, kde n určuje proměnná nRow.
             int nRow = 3;
-            for (int j = 0;j < array2D.GetLength(1); j++) 
+            for (int j = 0; j < array2D.GetLength(1); j++)
             {
-                Console.Write(array2D[nRow,j]+" ");
+                Console.Write(array2D[nRow, j] + " ");
             }
             Console.WriteLine("\n" + "\n");
 
@@ -43,31 +43,31 @@ namespace _2D_Array_Playground
             int nColumn = 0;
             for (int i = 0; i < array2D.GetLength(0); i++)
             {
-                Console.Write(array2D[i,nColumn] + " ");
+                Console.Write(array2D[i, nColumn] + " ");
             }
             Console.WriteLine("\n" + "\n");
             //Diagonala hlavni
             for (int i = 0; i < array2D.GetLength(0); i++)
             {
-                Console.Write(array2D[i,i]+" ");
+                Console.Write(array2D[i, i] + " ");
             }
             Console.WriteLine("\n" + "\n");
             //Diagonala vedlejsi
             for (int i = 0; i < array2D.GetLength(0); i++)
             {
-                Console.Write(array2D[i,4-i]+" ");
+                Console.Write(array2D[i, 4 - i] + " ");
             }
-            Console.WriteLine("\n" +"\n");
+            Console.WriteLine("\n" + "\n");
 
             //TODO 4: Prohoď prvek na souřadnicích [xFirst, yFirst] s prvkem na souřadnicích [xSecond, ySecond] a vypiš celé pole do konzole po prohození.
             //Nápověda: Budeš potřebovat proměnnou navíc, do které si uložíš první z prvků před tím, než ho přepíšeš druhým, abys hodnotou prvního prvku potom mohl přepsat druhý
-            int xFirst, yFirst, xSecond, ySecond,swap;
+            int xFirst, yFirst, xSecond, ySecond, swap;
             xFirst = 0;
-            yFirst = 0; 
+            yFirst = 0;
             xSecond = 4;
             ySecond = 4;
-            swap = array2D[xFirst,yFirst];
-            array2D[xFirst,yFirst] = array2D[xSecond,ySecond];
+            swap = array2D[xFirst, yFirst];
+            array2D[xFirst, yFirst] = array2D[xSecond, ySecond];
             array2D[xSecond, ySecond] = swap;
             for (int i = 0; i < array2D.GetLength(0); i++)
             {
@@ -85,11 +85,11 @@ namespace _2D_Array_Playground
             //TODO 5: Prohoď n-tý řádek v poli s m-tým řádkem (n je dáno proměnnou nRowSwap, m mRowSwap) a vypiš celé pole do konzole po prohození.
             int nRowSwap = 0;
             int mRowSwap = 4;
-            int[]arrayRow= new int[array2D.GetLength(0)];
-            for (int i = 0;i< array2D.GetLength(0); i++)
+            int[] arrayRow = new int[array2D.GetLength(0)];
+            for (int i = 0; i < array2D.GetLength(0); i++)
             {
-                arrayRow[i] = array2D[mRowSwap,i];
-                array2D[mRowSwap,i] = array2D[nRowSwap,i];
+                arrayRow[i] = array2D[mRowSwap, i];
+                array2D[mRowSwap, i] = array2D[nRowSwap, i];
                 array2D[nRowSwap, i] = arrayRow[i];
             }
             for (int i = 0; i < array2D.GetLength(0); i++)
@@ -114,9 +114,9 @@ namespace _2D_Array_Playground
             int[] arrayCol = new int[array2D.GetLength(0)];
             for (int i = 0; i < array2D.GetLength(1); i++)
             {
-                arrayCol[i] = array2D[i,mColSwap];
-                array2D[i,mColSwap] = array2D[i,nColSwap];
-                array2D[i,nColSwap] = arrayCol[i];
+                arrayCol[i] = array2D[i, mColSwap];
+                array2D[i, mColSwap] = array2D[i, nColSwap];
+                array2D[i, nColSwap] = arrayCol[i];
             }
             for (int i = 0; i < array2D.GetLength(0); i++)
             {
@@ -126,6 +126,7 @@ namespace _2D_Array_Playground
                 }
                 Console.WriteLine("\n");
             }
+            Console.WriteLine("\n");
             for (int i = 0; i < array2D.GetLength(1); i++)//vrati puvodni hodnoty do tabulky
             {
                 arrayCol[i] = array2D[i, mColSwap];
@@ -134,9 +135,52 @@ namespace _2D_Array_Playground
             }
 
             //TODO 7: Otoč pořadí prvků na hlavní diagonále (z levého horního rohu do pravého dolního rohu) a vypiš celé pole do konzole po otočení.
+            int[]arrayDiagonal=new int[array2D.GetLength(0)];
+            for (int i = 0; i < array2D.GetLength(1); i++)
+            {
+                arrayDiagonal[i] = array2D[i, i];
+            }
+            for (int i = 0; i < array2D.GetLength(1); i++)
+            {
+                array2D[i, i] = arrayDiagonal[arrayDiagonal.GetLength(0)-1-i];
+            }
+            for (int i = 0; i < array2D.GetLength(0); i++)
+            {
+                for (int j = 0; j < array2D.GetLength(1); j++)
+                {
+                    Console.Write(array2D[i, j] + " ");
+                }
+                Console.WriteLine("\n");
+            }
+            Console.WriteLine("\n");
+            for (int i = 0; i < array2D.GetLength(1); i++)
+            {
+                arrayDiagonal[i] = array2D[i, i];
+            }
+            for (int i = 0; i < array2D.GetLength(1); i++)
+            {
+                array2D[i, i] = arrayDiagonal[arrayDiagonal.GetLength(0) - 1 - i];
+            }
 
             //TODO 8: Otoč pořadí prvků na vedlejší diagonále (z pravého horního rohu do levého dolního rohu) a vypiš celé pole do konzole po otočení.
-
+            int[] array2Diagonal = new int[array2D.GetLength(0)];
+            for (int i = 0; i < array2D.GetLength(1); i++)
+            {
+                array2Diagonal[i] = array2D[i,array2D.GetLength(1)-1-i];
+            }
+            for (int i = 0; i < array2D.GetLength(1); i++)
+            {
+                array2D[i, array2D.GetLength(1) - 1 - i] = array2Diagonal[array2Diagonal.GetLength(0) - 1 - i];
+            }
+            for (int i = 0; i < array2D.GetLength(0); i++)
+            {
+                for (int j = 0; j < array2D.GetLength(1); j++)
+                {
+                    Console.Write(array2D[i, j] + " ");
+                }
+                Console.WriteLine("\n");
+            }
+            Console.WriteLine("\n");
 
             Console.ReadKey();
         }
