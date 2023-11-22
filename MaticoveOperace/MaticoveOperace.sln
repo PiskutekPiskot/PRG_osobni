@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 25.0.1706.7
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "maticee", "maticee\maticee.csproj", "{E9A1D2B0-C1E3-4658-80AF-558EBA92AE03}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaticoveOperace", "MaticoveOperace\MaticoveOperace.csproj", "{5BF4F866-E909-4569-B47E-0CEE95D0A239}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{E9A1D2B0-C1E3-4658-80AF-558EBA92AE03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E9A1D2B0-C1E3-4658-80AF-558EBA92AE03}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E9A1D2B0-C1E3-4658-80AF-558EBA92AE03}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E9A1D2B0-C1E3-4658-80AF-558EBA92AE03}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5BF4F866-E909-4569-B47E-0CEE95D0A239}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5BF4F866-E909-4569-B47E-0CEE95D0A239}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5BF4F866-E909-4569-B47E-0CEE95D0A239}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5BF4F866-E909-4569-B47E-0CEE95D0A239}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {578100C9-4FE6-4437-8157-C022B77374C4}
+		SolutionGuid = {74E7B827-488A-4E0A-B39E-DC1C203AF576}
 	EndGlobalSection
 EndGlobal
