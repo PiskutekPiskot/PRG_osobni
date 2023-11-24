@@ -11,7 +11,7 @@ namespace Matice
     {
         static void Main(string[] args)
         {
-            List<string> operations = new List<string>
+            List<string> operations = new List<string>//list s možnými operacemi
             {
               "SwapTwoNumbers","SwapTwoRows","SwapTwoColumns","SwapValuesOnMainDiagonal","SwapValuesOnSecondaryDiagonal",
               "MultiplyArrayByNumber","MultiplyRowByNumber","MultiplyColumnByNumber","AddTwoArrays","SubtractTwoArrays",
@@ -22,7 +22,7 @@ namespace Matice
             int b=0;
             int[,] mainArray =new int[a,b];
             Console.WriteLine("Create an array" +'\n'+ "type 1 for a sequential array" + '\n' + "type 2 for a random array");
-            while (IncorrectInput)
+            while (IncorrectInput)//opakovaně čte vstup, dokud uživatel nezadá 1 nebo 2
             {
                 string input = Console.ReadLine();
                 if (input == "1")
@@ -64,7 +64,7 @@ namespace Matice
                     Console.WriteLine("The operation you picked isn't in the list. Pick an operation");
                     operation = Console.ReadLine();
                 }
-                switch (operation)
+                switch (operation)//přečtený vstup vyvolá funkci
                 {
                     case ("SwapTwoNumbers"):
                         writeArray(a, b, numsSwap(a, b, mainArray)); break;
