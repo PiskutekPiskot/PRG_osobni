@@ -15,7 +15,7 @@ namespace Matice
             {
               "SwapTwoNumbers","SwapTwoRows","SwapTwoColumns","SwapValuesOnMainDiagonal","SwapValuesOnSecondaryDiagonal",
               "MultiplyArrayByNumber","MultiplyRowByNumber","MultiplyColumnByNumber","AddTwoArrays","SubtractTwoArrays",
-              "MultiplayTwoArrays","FlipArrayByMainDiagonal","CreateNewRandomarray","CreateNewSequentialArray"
+              "MultiplyTwoArrays","FlipArrayByMainDiagonal","CreateNewRandomarray","CreateNewSequentialArray"
             };
             bool IncorrectInput = true;
             int a = 0;
@@ -88,8 +88,8 @@ namespace Matice
                         writeArray(a, b, arraySubtraction(a, b, mainArray, sequentialArray(a, b))); break;
                     case ("FlipArrayByMainDiagonal"):
                         writeArray(b, a, arrayTransposition(a, b, mainArray)); break;
-                    case ("MultiplayTwoArrays"):
-                        writeArray(a, b, arrayByArrayMultiplication(a, b, mainArray, sequentialArray(a, b))); break;
+                    case ("MultiplyTwoArrays"):
+                        arrayByArrayMultiplication(a, b, mainArray); break;
                     case ("CreateNewRandomarray"):
                         randomArray(a, b); break;
                     case ("CreateNewSequentialArray"):
@@ -98,7 +98,7 @@ namespace Matice
             }
         }
         static int[,] randomArray(int a,int b)
-        { 
+        {
             Random rnd = new Random();
             int[,] mainArray = new int[a, b];
             for (int i = 0; i < a; i++)
@@ -288,17 +288,34 @@ namespace Matice
             }
             return transposedArray;
         }
-        static int[,] arrayByArrayMultiplication(int a, int b, int[,] arrayA, int[,] arrayB)
+        static void arrayByArrayMultiplication(int a, int b, int[,] array)
         {
-            int[,] multipliedByArray = (int[,])arrayA.Clone();
+            int[,] arrayA = (int[,])array.Clone();
+            int aa = b;
+            Console.WriteLine("input size y off second array (horizontal)");
+            int bb = Convert.ToInt32(Console.ReadLine());
+            int[,] arrayB = sequentialArray(aa, bb);
+            int[,] multipliedByArray = new int[a,bb];
             for (int i = 0; i < a; i++)
             {
-                for (int j = 0; j < b; j++)
+                for (int j = 0; j < bb; j++)
                 {
-                    multipliedByArray[i, j] = multipliedByArray[i, j] * arrayB[i, j];
+                    for (int k = 0; k < b; k++)
+                    {
+                        multipliedByArray[i, j] += arrayA[i, k] * arrayB[k, j];
+                    }
                 }
             }
-            return multipliedByArray;
+            Console.WriteLine(" ");
+            for (int i = 0; i < a; i++)
+            {
+                for (int j = 0; j < bb; j++)
+                {
+                    Console.Write(multipliedByArray[i, j] + " ");
+                }
+                Console.WriteLine("\n");
+            }
+            Console.WriteLine("\n");
         }
     }
 }
