@@ -39,7 +39,7 @@ namespace Classes
                 return bmi;
             }
 
-            public static Human makeHuman(Human human1, Human human2)
+          /*  public static Human makeHuman(Human human1, Human human2)
             {
                 if (human1.partner==human2 &&human2.partner==human1)
                 {
@@ -52,6 +52,7 @@ namespace Classes
                     return child;
                 }
             }
+          */
         }
         static void Main(string[] args)
         {
