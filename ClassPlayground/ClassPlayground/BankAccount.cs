@@ -8,21 +8,50 @@ namespace ClassPlayground
 {
     internal class BankAccount
     {
+        
         public int accountNumber;
         public string holderName;
-        public string Currency;
-        public int Balance;
-        public void Deposit()
+        public string currency;
+        public int balance;
+        public BankAccount( string holderName, string currency, int balance)
         {
-
+            Random rnd = new Random();
+            this.accountNumber=rnd.Next(100000000,1000000000);
+            this.holderName = holderName;
+            this.currency = currency;   
+            this.balance = balance;
         }
-        public void Withdraw()
+        public void Deposit(int amount,string currency)
         {
-
+            balance += amount;
         }
-        public void transfer()
+        public void Withdraw(int amount)
         {
-
+            if (amount < balance)
+            {
+                balance -= amount;
+            }
+            else
+            {
+                Console.WriteLine("Balance is not sufficient for this transaction.");
+            }
         }
+        public void Transfer(BankAccount user, int amount)
+        {
+            if (amount < balance)
+            {
+                balance -= amount;
+                user.balance += amount;
+            }
+            else
+            {
+                Console.WriteLine("Balance is not sufficient for this transaction.");
+            }
+        }
+        public void AccountInfo()
+        {
+            Console.WriteLine($"{accountNumber} is {holderName}'s account with {balance} {currency}");
+        }
+
     }
 }

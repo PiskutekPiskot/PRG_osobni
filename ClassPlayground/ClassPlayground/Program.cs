@@ -66,12 +66,21 @@ namespace ClassPlayground
     {
         static void Main(string[] args)
         {
-            Rectangle rect1 = new Rectangle(3,8);
+            Rectangle rect1 = new Rectangle(3, 8);
             rect1.CalculateArea();
             rect1.CalculateAspectRatio();
-            rect1.ContainsPoint(-3,3);
-            Console.ReadKey();
+            rect1.ContainsPoint(-3, 3);
 
+            BankAccount bank1 = new BankAccount("Pavel", "czk", 100000);
+            bank1.Withdraw(10000);
+            bank1.Deposit(5000);
+            BankAccount bank2 = new BankAccount("Adam", "czk", 40000);
+            bank2.Transfer(bank1, 10000);
+            bank1.AccountInfo();
+            bank2.AccountInfo();
+
+            //Student student1 = new Student(Bobeš, 111, 12,{"aj","nj","ma","ch","bi"} );
+            Console.ReadKey();
         }
     }
 }
